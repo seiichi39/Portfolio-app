@@ -18,7 +18,7 @@
               <ul class="dropdown-menu">
                 <% unless current_user.admin? %>
                   <li><%= link_to "予約", "#" %></li>
-                  <li><%= link_to "アカウント修正", "#" %></li>
+                  <li><%= link_to "プロフィール修正", edit_user_path(current_user) %></li>
                 <% end %>
                 <li class="divider"></li>
                 <li>
