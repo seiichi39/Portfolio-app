@@ -1,11 +1,8 @@
 class User < ApplicationRecord
-  # Include default devise modules. Others available are:
-  # :confirmable, :lockable, :timeoutable, :trackable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable,
          :omniauthable, omniauth_providers: %i[line]
 
-  # 以下を追加
   def social_profile(provider)
     social_profiles.select { |sp| sp.provider == provider.to_s }.first
   end
@@ -19,12 +16,25 @@ class User < ApplicationRecord
     access_secret = credentials["secret"]
     credentials = credentials.to_json
     name = info["name"]
-    # self.set_values_by_raw_info(omniauth['extra']['raw_info'])
   end
 
   def set_values_by_raw_info(raw_info)
     self.raw_info = raw_info.to_json
     self.save!
   end
-  # 以上を追加
+
+  def update_with_password(params, *options)
+    params.delete(:current_password)
+
+    if params[:password].blank?
+        params.delete(:password)
+        params.delete(:password_confirmation) if params[:password_confirmation].blank?
+    end
+
+    result = update(params, *options)
+
+    clean_up_passwords
+    result
+  end
+
 end

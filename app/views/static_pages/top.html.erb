@@ -7,11 +7,10 @@
           <%= link_to "ログイン", user_session_path, class: "btn btn-primary" %>
         <% else %>
           <%= link_to "ログイン状態です", user_session_path, disabled: true, class: "btn btn-primary" %>
-          <%= link_to "ログアウト", destroy_user_session_path, method: :delete, class: "btn btn-primary" %>
         <% end %>
       </div>
       <p>
-        アカウント作成は<%= link_to "こちら", '#' %>から
+        アカウント作成は<%= link_to "こちら", new_user_registration_path %>から
       </p>
     </div>
   </div>
