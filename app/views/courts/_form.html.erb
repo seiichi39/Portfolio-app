@@ -1,0 +1,11 @@
+<%= form_with(model: @court, local: true) do |f| %>
+  <%= render 'shared/error_messages', object: @court %>
+  
+  <%= f.label :court_name, class: "label-#{yield(:class_text)}" %>
+  <%= f.text_field :court_name, class: "form-control" %>
+  
+  <%= f.label :court_note, class: "label-#{yield(:class_text)}" %>
+  <%= f.text_area :court_note, class: "form-control" %>
+  
+  <%= f.submit yield(:button_text), class: "btn btn-primary btn-block btn-#{yield(:class_text)}" %>
+<% end %>

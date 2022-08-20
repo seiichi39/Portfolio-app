@@ -6,8 +6,8 @@
         <% if logged_in? %>
           <% if current_user.admin? %>
             <li><%= link_to "トップへ", root_path %></li>
-            <li><%= link_to "利用者一覧", users_path %></li>
-            <li><%= link_to "テニスコートの追加", "#" %></li>
+            <li><%= link_to "すべての利用者", users_path %></li>
+            <li><%= link_to "すべてのテニスコート", courts_path %></li>
           <% else %>
             <li id="header_menu"><%= link_to "トップへ", root_path %></li>
           <% end %>

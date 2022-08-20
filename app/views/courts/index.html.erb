@@ -1,0 +1,36 @@
+<% provide(:title, 'All-court') %>
+<% provide(:class_text, 'All-court') %>
+<% provide(:button_text, '一覧') %>
+
+<h1>すべてのテニスコート</h1>
+
+<div class="col-md-10 col-md-offset-1">
+  <table class="table table-condensed table-hover" id="table-users">
+    <thead>
+      <tr>
+        <th><%= Court.human_attribute_name :court_name %></th>
+        <th><%= Court.human_attribute_name :court_note %></th>
+      </tr>
+    </thead>
+    
+    <% @courts.each do |court| %>
+      <tr>     
+        <td><%= court.court_name %></td>
+        <td><%= court.court_note %></td>
+        <td><%= link_to "編集", edit_court_path(court), class: "btn btn-success" %></td>
+        <td><%= link_to "削除", court, method: :delete,
+              data: { confirm: "削除してよろしいですか？" },
+              class: "btn btn-danger" %></td>
+      </tr>
+    <% end %>
+  </table>
+
+  <div class="panel-group">
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h4><%= link_to "テニスコート追加", new_court_path, class: "btn btn-primary" %></h4>
+      </div> 
+    </div>
+  </div>
+
+</div>

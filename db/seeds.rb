@@ -21,3 +21,8 @@ User.create!(name: "管理者",
               password: password,
               password_confirmation: password)
 end
+
+6.times do |n|
+  name = "第#{n+1}テニスコート"
+  Court.create!(court_name: name)
+end

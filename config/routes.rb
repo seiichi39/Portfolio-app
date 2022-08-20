@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  resources :courts
+
   root 'static_pages#top'
  
   devise_for :users, controllers: {
@@ -13,5 +15,7 @@ Rails.application.routes.draw do
       post :import
     end
   end
+
+
   
 end

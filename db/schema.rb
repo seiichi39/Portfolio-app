@@ -13,8 +13,8 @@
 ActiveRecord::Schema.define(version: 20220818225225) do
 
   create_table "courts", force: :cascade do |t|
-    t.string "name"
-    t.string "note"
+    t.string "court_name"
+    t.string "court_note"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
