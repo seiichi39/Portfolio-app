@@ -1,0 +1,56 @@
+<% provide(:title, @court.court_name) %>
+<div>
+  <table class="table table-bordered table-condensed user-table"  id="table-reservations">
+    <tr>
+      <td>
+        <% unless @first_day == Date.current.beginning_of_month %>
+          <%= link_to "←", court_path(date: @first_day.prev_month), class: "btn btn-primary" %>
+          &emsp;<%= l(@first_day, format: :middle) %>　予約表&emsp;
+          <%= link_to "→", court_path(date: @first_day.next_month), class: "btn btn-primary" %>
+        <% else %>
+          <%= link_to "←", court_path(date: @first_day.prev_month), class: "btn btn-primary", disabled: true %>
+          &emsp;<%= l(@first_day, format: :middle) %>　予約表&emsp;
+          <%= link_to "→", court_path(date: @first_day.next_month), class: "btn btn-primary" %> 
+        <% end %>       
+      </td>
+      <td><%= @court.court_name %></td>
+    </tr>
+  </table>
+</div>
+
+<div>
+  <table class="table table-bordered table-condensed table-hover" id="table-attendances">
+    <thead>
+      <tr>
+        <th colspan="2">予約日</th>
+        <th colspan="2">9:00~11:00</th>
+        <th colspan="2">11:00~13:00</th>
+        <th colspan="2">13:00~15:00</th>
+        <th colspan="2">15:00~17:00</th>
+        <th colspan="2">17:00~19:00</th>
+      </tr>
+    </thead>
+     <tbody>
+       <% @reservations.each do |day| %>
+         <% css_class = case day.reservation_date.wday
+                       when 6 then 'text-primary'
+                       when 0 then 'text-danger'
+                       end %>
+         <tr>
+           <td><%= l(day.reservation_date, format: :short2) %></td>
+           <td class = "<%= css_class %>"><%= $days_of_the_week[day.reservation_date.wday] %></td>
+           <td></td>
+           <td></td>
+           <td></td>
+           <td></td>
+           <td></td>
+           <td></td>
+           <td></td>
+           <td></td>
+           <td></td>
+           <td></td>           
+         </tr>
+       <% end %>  
+     </tbody>
+  </div>
+</div>

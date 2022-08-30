@@ -1,5 +1,7 @@
 class CourtsController < ApplicationController
   before_action :set_court, only: [:edit, :update, :destroy]
+  before_action :set_court2, only: :show
+  before_action :set_one_month, only: :show
 
   def new
     @court = Court.new
@@ -27,6 +29,9 @@ class CourtsController < ApplicationController
     end
   end
 
+  def show
+  end
+
   def index
     @courts = Court.all.order(id: "ASC")
   end
@@ -45,6 +50,10 @@ class CourtsController < ApplicationController
 
   def set_court
     @court = Court.find(params[:id])
-  end  
+  end
+  
+  def set_court2
+    @court = Court.find(1)
+  end
 
 end

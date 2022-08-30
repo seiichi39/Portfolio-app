@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get 'reservations/update'
+
   resources :courts
 
   root 'static_pages#top'

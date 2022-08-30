@@ -5,6 +5,8 @@ class ApplicationController < ActionController::Base
   # deviseコントローラーにストロングパラメータを追加する          
   before_action :configure_permitted_parameters, if: :devise_controller?
 
+  $days_of_the_week = %w{日 月 火 水 木 金 土}
+
   def set_user
     if params[:id] == "sign_out"
       redirect_to controller: 'users/sessions', action: 'destroy'
@@ -15,6 +17,28 @@ class ApplicationController < ActionController::Base
 
   def after_sign_out_path_for(resource)
     root_path
+  end
+
+  def set_one_month 
+    @first_day = params[:date].nil? ?
+    Date.current.beginning_of_month : params[:date].to_date
+    @last_day = @first_day.end_of_month
+    @one_month = [*@first_day..@last_day]
+
+    @reservations = @court.reservations.where(reservation_date: (@first_day-1)..@last_day).order(:reservation_date)
+
+    unless @one_month.count == @reservations.count
+      ActiveRecord::Base.transaction do
+        @one_month.each do |day| 
+          @court.reservations.create(reservation_date: day)
+        end
+      end
+      @reservations = @court.reservations.where(reservation_date: (@first_day-1)..@last_day).order(:reservation_date)
+    end
+  
+  rescue ActiveRecord::RecordInvalid
+    flash[:danger] = "ページ情報の取得に失敗しました、再アクセスしてください。"
+    redirect_to root_url
   end
   
   protected

@@ -1,0 +1,17 @@
+<% provide(:title, 'court-reservation') %>
+<% provide(:class_text, 'court-reservation') %>
+<% provide(:button_text, '予約状況') %>
+
+<h1>予約状況</h1>
+
+<table class="table table-bordered table-condensed user-table"  id="table-reservations">
+  <tr>
+    <td>
+      <%= link_to "←", court_path(date: @first_day.prev_month), class: "btn btn-primary" %>
+      &emsp;<%= l(@first_day, format: :middle) %>　予約表&emsp;
+      <%= link_to "→", court_path(date: @first_day.next_month), class: "btn btn-primary" %>
+    </td>
+  </tr>
+</table>
+
+

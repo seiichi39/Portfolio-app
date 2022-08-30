@@ -22,6 +22,7 @@ ActiveRecord::Schema.define(version: 20220818225225) do
   create_table "reservations", force: :cascade do |t|
     t.datetime "reservation_date"
     t.integer "part1"
+    t.integer "court_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.datetime "part1_time"
@@ -31,6 +32,9 @@ ActiveRecord::Schema.define(version: 20220818225225) do
     t.datetime "part3_time"
     t.integer "part4"
     t.datetime "part4_time"
+    t.integer "part5"
+    t.datetime "part5_time"
+    t.index ["court_id"], name: "index_reservations_on_court_id"
   end
 
   create_table "users", force: :cascade do |t|

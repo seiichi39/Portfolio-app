@@ -11,3 +11,5 @@ ja:
       court:
         court_name: 名前
         court_note: 備考
+      reservation:
+        reservation_date: 予約日
