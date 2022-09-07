@@ -39,16 +39,81 @@
          <tr>
            <td><%= l(day.reservation_date, format: :short2) %></td>
            <td class = "<%= css_class %>"><%= $days_of_the_week[day.reservation_date.wday] %></td>
-           <td></td>
-           <td></td>
-           <td></td>
-           <td></td>
-           <td></td>
-           <td></td>
-           <td></td>
-           <td></td>
-           <td></td>
-           <td></td>           
+           <!-- 9:00〜11:00の時間帯の内容 -->
+           <td>
+            <% if ((Date.current + 14) > day.reservation_date) && (day.reservation_date > Date.current) %>
+              <% if day.part1.nil? || day.part1 == 99999 %>
+                <%= link_to "予約", court_reservation_path(@court, day, part1: current_user.id, part1_time: Time.current), method: :patch, class: "btn btn-primary" %>
+              <% elsif day.part1 == current_user.id %>
+                <%= link_to "キャンセル", cancel_court_reservation_path(@court, day, part1: "99999", part1_time: nil), method: :patch, class: "btn btn-danger" %>
+              <% end %>
+            <% end %>
+           </td>
+           <td>
+            <% if day.part1.present? && day.part1 != 99999 %>
+              <%= "予約済" %>
+            <% end %>
+           </td>
+           <!-- 11:00〜13:00の時間帯の内容 -->
+           <td>
+            <% if ((Date.current + 14) > day.reservation_date) && (day.reservation_date > Date.current) %>
+              <% if day.part2.nil? || day.part2 == 99999 %>
+                <%= link_to "予約", court_reservation_path(@court, day, part2: current_user.id, part2_time: Time.current), method: :patch, class: "btn btn-primary" %>
+              <% elsif day.part2 == current_user.id %>
+                <%= link_to "キャンセル", cancel_court_reservation_path(@court, day, part2: "99999", part2_time: nil), method: :patch, class: "btn btn-danger" %>
+              <% end %>
+            <% end %>
+           </td>
+           <td>
+            <% if day.part2.present? && day.part2 != 99999 %>
+              <%= "予約済" %>
+            <% end %>
+           </td>
+           <!-- 13:00〜15:00の時間帯の内容 -->
+           <td>
+            <% if ((Date.current + 14) > day.reservation_date) && (day.reservation_date > Date.current) %>
+              <% if day.part3.nil? || day.part3 == 99999 %>
+                <%= link_to "予約", court_reservation_path(@court, day, part3: current_user.id, part3_time: Time.current), method: :patch, class: "btn btn-primary" %>
+              <% elsif day.part3 == current_user.id %>
+                <%= link_to "キャンセル", cancel_court_reservation_path(@court, day, part3: "99999", part3_time: nil), method: :patch, class: "btn btn-danger" %>
+              <% end %>
+            <% end %>
+           </td>
+           <td>
+            <% if day.part3.present? && day.part3 != 99999 %>
+              <%= "予約済" %>
+            <% end %>
+           </td>
+           <!-- 15:00〜17:00の時間帯の内容 -->
+           <td>
+            <% if ((Date.current + 14) > day.reservation_date) && (day.reservation_date > Date.current) %>
+              <% if day.part4.nil? || day.part4 == 99999 %>
+                <%= link_to "予約", court_reservation_path(@court, day, part4: current_user.id, part4_time: Time.current), method: :patch, class: "btn btn-primary" %>
+              <% elsif day.part4 == current_user.id %>
+                <%= link_to "キャンセル", cancel_court_reservation_path(@court, day, part4: "99999", part4_time: nil), method: :patch, class: "btn btn-danger" %>
+              <% end %>
+            <% end %>
+           </td>
+           <td>
+            <% if day.part4.present? && day.part4 != 99999 %>
+              <%= "予約済" %>
+            <% end %>
+           </td>
+           <!-- 17:00〜19:00の時間帯の内容 -->
+           <td>
+            <% if ((Date.current + 14) > day.reservation_date) && (day.reservation_date > Date.current) %>
+              <% if day.part5.nil? || day.part5 == 99999 %>
+                <%= link_to "予約", court_reservation_path(@court, day, part5: current_user.id, part5_time: Time.current), method: :patch, class: "btn btn-primary" %>
+              <% elsif day.part5 == current_user.id %>
+                <%= link_to "キャンセル", cancel_court_reservation_path(@court, day, part5: "99999", part5_time: Time.current), method: :patch, class: "btn btn-danger" %>
+              <% end %>
+            <% end %>
+           </td>
+           <td>
+            <% if day.part5.present? && day.part5 != 99999 %>
+              <%= "予約済" %>
+            <% end %>
+           </td>         
          </tr>
        <% end %>  
      </tbody>

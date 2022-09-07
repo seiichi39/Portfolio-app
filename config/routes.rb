@@ -1,7 +1,14 @@
 Rails.application.routes.draw do
   get 'reservations/update'
 
-  resources :courts
+  resources :courts do
+    resources :reservations do
+      member do
+        patch 'update'
+        patch 'cancel'
+      end
+    end
+  end
 
   root 'static_pages#top'
  
@@ -17,7 +24,5 @@ Rails.application.routes.draw do
       post :import
     end
   end
-
-
   
 end
