@@ -13,7 +13,16 @@
           <%= link_to "→", court_path(date: @first_day.next_month), class: "btn btn-primary" %> 
         <% end %>       
       </td>
-      <td><%= @court.court_name %></td>
+      <td>
+      <div>
+        <%= @court.court_name %>
+        <%= form_with url: before_show_court_path, method: :get, local: true do |f| %>
+          <%= f.select :court_id, [['第1コート', 1], ['第2コート', 2], ['第3コート', 3], ['第4コート', 4], ['第5コート', 5]],
+                      { include_blank: '選択してください'}, { id: "court_id", class: "court_class" } %>
+          <%= f.submit "選択" %>
+        <% end %>
+      </div>
+      </td>
     </tr>
   </table>
 </div>
@@ -45,7 +54,7 @@
               <% if day.part1.nil? || day.part1 == 99999 %>
                 <%= link_to "予約", court_reservation_path(@court, day, part1: current_user.id, part1_time: Time.current), method: :patch, class: "btn btn-primary" %>
               <% elsif day.part1 == current_user.id %>
-                <%= link_to "キャンセル", cancel_court_reservation_path(@court, day, part1: "99999", part1_time: nil), method: :patch, class: "btn btn-danger" %>
+                <%= link_to "キャンセル", cancel_court_reservation_path(@court, day, part1: "99999", part1_time: Time.current), method: :patch, class: "btn btn-danger" %>
               <% end %>
             <% end %>
            </td>
@@ -60,7 +69,7 @@
               <% if day.part2.nil? || day.part2 == 99999 %>
                 <%= link_to "予約", court_reservation_path(@court, day, part2: current_user.id, part2_time: Time.current), method: :patch, class: "btn btn-primary" %>
               <% elsif day.part2 == current_user.id %>
-                <%= link_to "キャンセル", cancel_court_reservation_path(@court, day, part2: "99999", part2_time: nil), method: :patch, class: "btn btn-danger" %>
+                <%= link_to "キャンセル", cancel_court_reservation_path(@court, day, part2: "99999", part2_time: Time.current), method: :patch, class: "btn btn-danger" %>
               <% end %>
             <% end %>
            </td>
@@ -75,7 +84,7 @@
               <% if day.part3.nil? || day.part3 == 99999 %>
                 <%= link_to "予約", court_reservation_path(@court, day, part3: current_user.id, part3_time: Time.current), method: :patch, class: "btn btn-primary" %>
               <% elsif day.part3 == current_user.id %>
-                <%= link_to "キャンセル", cancel_court_reservation_path(@court, day, part3: "99999", part3_time: nil), method: :patch, class: "btn btn-danger" %>
+                <%= link_to "キャンセル", cancel_court_reservation_path(@court, day, part3: "99999", part3_time: Time.current), method: :patch, class: "btn btn-danger" %>
               <% end %>
             <% end %>
            </td>
@@ -90,7 +99,7 @@
               <% if day.part4.nil? || day.part4 == 99999 %>
                 <%= link_to "予約", court_reservation_path(@court, day, part4: current_user.id, part4_time: Time.current), method: :patch, class: "btn btn-primary" %>
               <% elsif day.part4 == current_user.id %>
-                <%= link_to "キャンセル", cancel_court_reservation_path(@court, day, part4: "99999", part4_time: nil), method: :patch, class: "btn btn-danger" %>
+                <%= link_to "キャンセル", cancel_court_reservation_path(@court, day, part4: "99999", part4_time: Time.current), method: :patch, class: "btn btn-danger" %>
               <% end %>
             <% end %>
            </td>

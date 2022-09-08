@@ -1,7 +1,6 @@
 class CourtsController < ApplicationController
-  before_action :set_court, only: [:edit, :update, :destroy]
-  before_action :set_court2, only: :show
-  before_action :set_one_month, only: :show
+  before_action :set_court, only: [:edit, :update, :show, :show_admin, :destroy]
+  before_action :set_one_month, only: [:show, :show_admin]
 
   def new
     @court = Court.new
@@ -29,7 +28,18 @@ class CourtsController < ApplicationController
     end
   end
 
+  def before_show
+    redirect_to court_path(id: params[:court_id])
+  end
+
   def show
+  end
+
+  def before_show_admin
+    redirect_to show_admin_court_path(id: params[:court_id])
+  end 
+
+  def show_admin
   end
 
   def index

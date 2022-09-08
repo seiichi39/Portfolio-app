@@ -2,6 +2,11 @@ Rails.application.routes.draw do
   get 'reservations/update'
 
   resources :courts do
+    member do
+      get 'before_show'
+      get 'show_admin'
+      get 'before_show_admin'
+    end
     resources :reservations do
       member do
         patch 'update'

@@ -1,0 +1,110 @@
+<% provide(:title, @court.court_name) %>
+<div>
+  <table class="table table-bordered table-condensed user-table"  id="table-reservations">
+    <tr>
+      <td>
+        <% unless @first_day == Date.current.beginning_of_month %>
+          <%= link_to "←", court_path(date: @first_day.prev_month), class: "btn btn-primary" %>
+          &emsp;<%= l(@first_day, format: :middle) %>　予約表&emsp;
+          <%= link_to "→", court_path(date: @first_day.next_month), class: "btn btn-primary" %>
+        <% else %>
+          <%= link_to "←", court_path(date: @first_day.prev_month), class: "btn btn-primary", disabled: true %>
+          &emsp;<%= l(@first_day, format: :middle) %>　予約表&emsp;
+          <%= link_to "→", court_path(date: @first_day.next_month), class: "btn btn-primary" %> 
+        <% end %>       
+      </td>
+      <td>
+      <div>
+        <%= @court.court_name %>
+        <%= form_with url: before_show_admin_court_path, method: :get, local: true do |f| %>
+          <%= f.select :court_id, [['第1コート', 1], ['第2コート', 2], ['第3コート', 3], ['第4コート', 4], ['第5コート', 5]],
+                      { include_blank: '選択してください'}, { id: "court_id", class: "court_class" } %>
+          <%= f.submit "選択" %>
+        <% end %>
+      </div>
+      </td>
+    </tr>
+  </table>
+</div>
+
+<div>
+  <table class="table table-bordered table-condensed table-hover" id="table-attendances">
+    <thead>
+      <tr>
+        <th colspan="2">予約日</th>
+        <th colspan="2">9:00~11:00</th>
+        <th colspan="2">11:00~13:00</th>
+        <th colspan="2">13:00~15:00</th>
+        <th colspan="2">15:00~17:00</th>
+        <th colspan="2">17:00~19:00</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @reservations.each do |day| %>
+        <% css_class = case day.reservation_date.wday
+                       when 6 then 'text-primary'
+                       when 0 then 'text-danger'
+                       end %>
+        <tr>
+          <td><%= l(day.reservation_date, format: :short2) %></td>
+          <td class = "<%= css_class %>"><%= $days_of_the_week[day.reservation_date.wday] %></td>
+          <!-- 9:00〜11:00の時間帯の内容 -->
+          <td>
+            <% if day.part1.present? && day.part1 != 99999 %>
+              <%= User.find_by(id: day.part1).name %>
+            <% end %>
+          </td>
+          <td>
+            <% if day.part1_time.present? %>
+              <%= l(day.part1_time, format: :short) %>
+            <% end %>
+          </td>
+          <!-- 11:00〜13:00の時間帯の内容 -->
+          <td>
+            <% if day.part2.present? && day.part2 != 99999 %>
+              <%= User.find_by(id: day.part2).name %>
+            <% end %>
+          </td>
+          <td>
+            <% if day.part2_time.present? %>
+              <%= l(day.part2_time, format: :short) %>
+            <% end %>
+          </td>
+           <!-- 13:00〜15:00の時間帯の内容 -->
+          <td>
+            <% if day.part3.present? && day.part3 != 99999 %>
+              <%= User.find_by(id: day.part3).name %>
+            <% end %>
+          </td>
+          <td>
+            <% if day.part3_time.present? %>
+              <%= l(day.part3_time, format: :short) %>
+            <% end %>
+          </td>
+          <!-- 15:00〜17:00の時間帯の内容 -->
+          <td>
+            <% if day.part4.present? && day.part4 != 99999 %>
+              <%= User.find_by(id: day.part4).name %>
+            <% end %>
+          </td>
+          <td>
+            <% if day.part4_time.present? %>
+              <%= l(day.part4_time, format: :short) %>
+            <% end %>
+          </td>
+          <!-- 17:00〜19:00の時間帯の内容 -->
+          <td>
+            <% if day.part5.present? && day.part5 != 99999 %>
+              <%= User.find_by(id: day.part5).name %>
+            <% end %>
+          </td>
+          <td>
+            <% if day.part5_time.present? %>
+              <%= l(day.part5_time, format: :short) %>
+            <% end %>
+          </td>         
+         </tr>
+       <% end %>  
+     </tbody>
+  </div>
+</div>

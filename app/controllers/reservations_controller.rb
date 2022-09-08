@@ -1,7 +1,7 @@
 class ReservationsController < ApplicationController
 
   def update
-    @court = Court.find(1)
+    @court = Court.find(params[:court_id])
     @reservation = Reservation.find(params[:id])
     if params[:part1].present?
       if @reservation.update_attributes(part1: params[:part1], part1_time: params[:part1_time])
@@ -38,7 +38,7 @@ class ReservationsController < ApplicationController
   end
 
   def cancel
-    @court = Court.find(1)
+    @court = Court.find(params[:court_id])
     @reservation = Reservation.find(params[:id])
     if params[:part1] == "99999"
       if @reservation.update_attributes(part1: params[:part1], part1_time: params[:part1_time])
