@@ -16,9 +16,8 @@
       <td>
       <div>
         <%= @court.court_name %>
-        <%= form_with url: before_show_court_path, method: :get, local: true do |f| %>
-          <%= f.select :court_id, [['第1コート', 1], ['第2コート', 2], ['第3コート', 3], ['第4コート', 4], ['第5コート', 5]],
-                      { include_blank: '選択してください'}, { id: "court_id", class: "court_class" } %>
+        <%= form_with model: @courts, url: before_show_court_path, method: :get, local: true do |f| %>
+          <%= f.collection_select :court_id, Court.all, :id, :court_name, { include_blank: '選択してください'}, { id: "court_id", class: "court_class" } %>
           <%= f.submit "選択" %>
         <% end %>
       </div>
