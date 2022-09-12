@@ -1,17 +1,14 @@
-<div class="row">
-  <div class="col-md-12">
-    <div class="center jumbotron" id="top-main">
-      <h1 id="top-main-title">テニスコート予約アプリ</h1>
-      <div style="margin-top: 10px;">
-        <% unless logged_in? %>
-          <%= link_to "ログイン", user_session_path, class: "btn btn-primary" %>
-        <% else %>
-          <%= link_to "ログイン状態です", user_session_path, disabled: true, class: "btn btn-primary" %>
-        <% end %>
-      </div>
-      <p>
-        アカウント作成は<%= link_to "こちら", new_user_registration_path %>から
+<div class="center jumbotron jumbotron-fluid" >
+  <div class="container">
+    <h1 id="title text-info">テニスコート予約アプリ</h1>
+    <p id="lead">
+      <br>テニスコートを予約するアプリケーションです。
+      <br>２週間前から前日まで予約可能で、キャンセルも可能となっています。
+    </p>
+    <% unless current_user.admin? %>
+      <p id="reservation">
+        テニスコートの予約は<%= link_to "こちら", court_path(Court.find(1)) %>から
       </p>
-    </div>
+    <% end %>
   </div>
 </div>

@@ -1,3 +1,86 @@
 // Place all the styles related to the StaticPages controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+/* 大きな背景画像 */
+/*.big-bg {
+  background-size: cover;
+  background-position: center top;
+}
+
+#home {
+  background-image: url(tennis_court_1.jpg);
+  min-height: 100vh;
+}
+
+#home .page-title {
+  text-transform: none;
+}*/
+
+/* ヘッダー */
+#logo {
+  font-style: italic;
+}
+
+#header {
+  background-color: #2e8b57;
+}
+
+#header-list {
+  font-weight: bold;
+  color: #ffffff;
+}
+
+#header-list:hover {
+  color: silver;
+  text-decoration: none;
+}
+
+#dropdown-title {
+  font-weight: bold;
+  color: #ffffff;
+  background-color: #2e8b57;
+}
+
+#dropdown-title:hover {
+  color: silver;
+  text-decoration: none;
+}
+
+/* トップ画面 */
+#home {
+  background-image: url(forest.jpg);
+  min-height: 100vh;
+}
+
+.jumbotron {
+  background-image: url(tennis_court_1.jpg);
+  background-size: cover;
+}
+
+.jumbotron-fluid {
+  /*margin-top: 30px;*/
+  padding-right: 0;
+  padding-left: 0;
+  border-radius: 0;
+}
+
+.jumbotron 
+  h1 {
+    padding-top: 40px;
+    color: yellow;
+    font-size: 60px;
+    font-weight: bold;
+    font-family: fantasy;
+    font-style: italic;
+  }
+
+#lead {
+  font-size: 30px;
+  padding-top: 20px;
+}
+
+#reservation {
+  font-size: 30px;
+  padding-top: 50px;
+}

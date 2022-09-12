@@ -1,7 +1,29 @@
 /* ユーザー一覧ページ */
+#table-users{
+  background-color: #ffffff;
+  border: solid 1px;
+  margin-left: auto;
+  margin-right: auto;
+  width:  500px;
+}
 
+/* コートテーブルの見出し */
+#table-users {
+  th {
+    background-color: #ffff00;
+  }
+}
+
+/* コートテーブルのデータ */
 #table-users {
   td {
+    text-align: left;
     vertical-align: middle;
   }
+}
+
+/* 削除ボタン */
+.user-btn {
+  text-align: right;
+  width: 50px;  
 }

@@ -1,18 +1,12 @@
 <header class="navbar navbar-fixed-top navbar-inverse", id="header">
   <div class="container">
-    <%= link_to "TennisCourt Reservation App", root_path, id: "logo" %>
+    <%= link_to "セレブエンジニア テニスコート", root_path, id: "logo" %>
     <nav>
       <ul class="nav navbar-nav navbar-right">
         <% if logged_in? %>
-          <% if current_user.admin? %>
-            <li><%= link_to "トップへ", root_path %></li>
-            <li><%= link_to "すべての利用者", users_path %></li>
-            <li><%= link_to "すべてのテニスコート", courts_path %></li>
-          <% else %>
-            <li id="header_menu"><%= link_to "トップへ", root_path %></li>
-          <% end %>
+          <li><%= link_to "トップへ", root_path, id: "header-list" %></li>
             <li class="dropdown">
-              <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown" id="dropdown-title" aria-expanded="true">
                 <%= current_user.name %> <b class="caret"></b>
               </a>
               <ul class="dropdown-menu">
@@ -20,6 +14,8 @@
                   <li><%= link_to "テニスコート予約", court_path(Court.find(1)) %></li>
                   <li><%= link_to "プロフィール修正", edit_user_registration_path %></li>
                 <% else %>
+                  <li><%= link_to "すべての利用者", users_path %></li>
+                  <li><%= link_to "すべてのテニスコート", courts_path %></li>
                   <li><%= link_to "テニスコート予約状況", show_admin_court_path(Court.find(1)) %></li> 
                 <% end %>
                 <li class="divider"></li>
@@ -29,8 +25,8 @@
               </ul>
             </li>
         <% else %>
-          <li><%= link_to "トップへ", root_path %></li>         
-          <li><%= link_to "ログイン", user_session_path %></li>
+          <li><%= link_to "トップへ", root_path, id: "header-list" %></li>         
+          <li><%= link_to "ログイン", user_session_path, id: "header-list" %></li>
         <% end %>
       </ul>
     </nav>

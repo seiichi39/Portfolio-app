@@ -13,3 +13,40 @@
 .btn-court-edit {
   margin-top: 10px;
 }
+
+/* コートのタイトル */
+.All-court-title {
+  margin-bottom: 30px;
+}
+
+/* コートテーブル */
+#table-courts {
+  background-color: #ffffff;
+  border: solid 1px;
+}
+
+/* コートテーブルの見出し */
+#table-courts {
+  th {
+    background-color: #ffff00;
+  }
+}
+
+/* コートテーブルのデータ */
+#table-courts {
+  td {
+    vertical-align: middle;
+  }
+}
+
+/* コートの名前 */
+.court-name {
+  width: 300px;
+}
+
+/* 編集・削除ボタン */
+.court-btn {
+  text-align: right;
+  width: 150px;
+}
+

@@ -1,8 +1,8 @@
 <% provide(:title, @court.court_name) %>
 <div>
-  <table class="table table-bordered table-condensed user-table"  id="table-reservations">
+  <table class="table table-condensed"  id="table-header">
     <tr>
-      <td>
+      <td id="reservation-title">
         <% unless @first_day == Date.current.beginning_of_month %>
           <%= link_to "←", court_path(date: @first_day.prev_month), class: "btn btn-primary" %>
           &emsp;<%= l(@first_day, format: :middle) %>　予約表&emsp;
@@ -13,21 +13,19 @@
           <%= link_to "→", court_path(date: @first_day.next_month), class: "btn btn-primary" %> 
         <% end %>       
       </td>
+      <td id="reservation-right"><%= @court.court_name %></td>
       <td>
-      <div>
-        <%= @court.court_name %>
-        <%= form_with model: @courts, url: before_show_court_path, method: :get, local: true do |f| %>
+        <%= form_with model: @courts, url: before_show_admin_court_path, method: :get, local: true do |f| %>
           <%= f.collection_select :court_id, Court.all, :id, :court_name, { include_blank: '選択してください'}, { id: "court_id", class: "court_class" } %>
           <%= f.submit "選択" %>
         <% end %>
-      </div>
       </td>
     </tr>
   </table>
 </div>
 
 <div>
-  <table class="table table-bordered table-condensed table-hover" id="table-attendances">
+  <table class="table table-condensed" id="table-reservations">
     <thead>
       <tr>
         <th colspan="2">予約日</th>
@@ -45,8 +43,8 @@
                        when 0 then 'text-danger'
                        end %>
         <tr>
-          <td><%= l(day.reservation_date, format: :short2) %></td>
-          <td class = "<%= css_class %>"><%= $days_of_the_week[day.reservation_date.wday] %></td>
+          <td id="reservation-center"><%= l(day.reservation_date, format: :short2) %></td>
+          <td class="<%= css_class %>" id="reservation-center"><%= $days_of_the_week[day.reservation_date.wday] %></td>
           <!-- 9:00〜11:00の時間帯の内容 -->
           <td>
             <% if day.part1.present? && day.part1 != 99999 %>
