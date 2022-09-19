@@ -23,7 +23,3 @@
     <%= link_to "#{OmniAuth::Utils.camelize(provider)}でログインする", omniauth_authorize_path(resource_name, provider), method: :post, id: "link-list" %><br />
   <% end %>
 <% end %>
-
-<%= link_to "LINE Login", user_line_omniauth_authorize_path %>
-
-

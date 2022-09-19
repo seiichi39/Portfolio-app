@@ -2,21 +2,6 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
-/* 大きな背景画像 */
-/*.big-bg {
-  background-size: cover;
-  background-position: center top;
-}
-
-#home {
-  background-image: url(tennis_court_1.jpg);
-  min-height: 100vh;
-}
-
-#home .page-title {
-  text-transform: none;
-}*/
-
 /* ヘッダー */
 #logo {
   font-style: italic;
@@ -51,6 +36,7 @@
 #home {
   background-image: url(forest.jpg);
   min-height: 100vh;
+  background-size: cover;
 }
 
 .jumbotron {
