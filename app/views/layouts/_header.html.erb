@@ -12,7 +12,11 @@
               <ul class="dropdown-menu">
                 <% unless current_user.admin? %>
                   <li><%= link_to "テニスコート予約", court_path(Court.first) %></li>
-                  <li><%= link_to "プロフィール修正", edit_user_registration_path %></li>
+                  <% unless current_user.provider == "line" %>
+                    <li><%= link_to "プロフィール修正", edit_user_registration_path %></li>
+                  <% else %>
+                    <li><%= link_to "プロフィール修正", edit_user_path(current_user) %></li>
+                  <% end %>
                 <% else %>
                   <li><%= link_to "すべての利用者", users_path %></li>
                   <li><%= link_to "すべてのテニスコート", courts_path %></li>
