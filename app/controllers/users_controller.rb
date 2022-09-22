@@ -14,7 +14,7 @@ class UsersController < ApplicationController
   def update
     if @user.update_attributes(user_params)
       flash[:success] = "ユーザー情報を更新しました。"
-      redirect_to users_url
+      redirect_to root_url
     else
       render :edit
     end
@@ -28,15 +28,6 @@ class UsersController < ApplicationController
     @user.destroy
     flash[:success] = "#{@user.name}のデータを削除しました。"
     redirect_to users_url
-  end
-
-  def import
-    if params[:csv_file].blank?
-      redirect_to(users_index_path, alert: 'インポートするCSVファイルを選択してください')
-    else
-      num = User.import(params[:csv_file])
-      redirect_to(users_index_path, notice: "#{num.to_s}件のユーザー情報を追加 / 更新しました")
-    end
   end
 
   private
