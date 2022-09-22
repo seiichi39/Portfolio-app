@@ -8,6 +8,7 @@
 
 User.create!(name: "管理者",
             email: "sample@email.com",
+            phone_number: "000-0000-9999",
             password: "password",
             password_confirmation: "password",
             admin: true)
@@ -15,9 +16,11 @@ User.create!(name: "管理者",
 20.times do |n|
   name = Faker::Name.name
   email = "sample-#{n+1}@email.com"
+  phone_number = "000-0000-0#{n+1}"
   password = "password"
   User.create!(name: name,
               email: email,
+              phone_number: phone_number,
               password: password,
               password_confirmation: password)
 end
