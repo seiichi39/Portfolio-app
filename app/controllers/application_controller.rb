@@ -24,9 +24,7 @@ class ApplicationController < ActionController::Base
     Date.current.beginning_of_month : params[:date].to_date
     @last_day = @first_day.end_of_month
     @one_month = [*@first_day..@last_day]
-
     @reservations = @court.reservations.where(reservation_date: (@first_day-1)..@last_day).order(:reservation_date)
-
     unless @one_month.count == @reservations.count
       ActiveRecord::Base.transaction do
         @one_month.each do |day| 
@@ -35,10 +33,37 @@ class ApplicationController < ActionController::Base
       end
       @reservations = @court.reservations.where(reservation_date: (@first_day-1)..@last_day).order(:reservation_date)
     end
-  
   rescue ActiveRecord::RecordInvalid
     flash[:danger] = "ページ情報の取得に失敗しました、再アクセスしてください。"
     redirect_to root_url
+  end
+  
+  def admin_user
+    unless current_user.admin?
+      redirect_to root_path(current_user)
+      flash[:danger] = "権限がありません"
+    end
+  end
+
+  def non_admin_user
+    if current_user.admin?
+      redirect_to root_path
+      flash[:danger] = "指定のページは表示できません"
+    end
+  end
+
+  def non_selected_court
+    unless current_user.admin?
+      redirect_to court_path(Court.first)
+      flash[:danger] = "コートを選択してください。"
+    end
+  end
+
+  def non_selected_court2
+    if current_user.admin? && params[:id].nil?
+      redirect_to before_show_admin_court_path(Court.first)
+      flash[:danger] = "コートを選択してください。"
+    end
   end
   
   protected

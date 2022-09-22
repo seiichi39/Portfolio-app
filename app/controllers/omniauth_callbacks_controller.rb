@@ -15,7 +15,11 @@ class OmniauthCallbacksController < Devise::OmniauthCallbacksController
       sign_in(:user, @profile)
     end
     flash[:notice] = "ログインしました"
-    redirect_to root_path
+    if current_user.phone_number.nil?
+      redirect_to edit_user_path(current_user)
+    else
+      redirect_to root_path
+    end
   end
 
   def fake_email(uid, provider)

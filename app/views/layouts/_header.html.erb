@@ -11,12 +11,12 @@
               </a>
               <ul class="dropdown-menu">
                 <% unless current_user.admin? %>
-                  <li><%= link_to "テニスコート予約", court_path(Court.find(1)) %></li>
+                  <li><%= link_to "テニスコート予約", court_path(Court.first) %></li>
                   <li><%= link_to "プロフィール修正", edit_user_registration_path %></li>
                 <% else %>
                   <li><%= link_to "すべての利用者", users_path %></li>
                   <li><%= link_to "すべてのテニスコート", courts_path %></li>
-                  <li><%= link_to "テニスコート予約状況", show_admin_court_path(Court.find(1)) %></li> 
+                  <li><%= link_to "テニスコート予約状況", show_admin_court_path(Court.first) %></li> 
                 <% end %>
                 <li class="divider"></li>
                 <li>

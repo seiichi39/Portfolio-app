@@ -7,7 +7,7 @@
     </p>
     <% unless current_user.admin? %>
       <p id="reservation">
-        テニスコートの予約は<%= link_to "こちら", court_path(Court.find(1)) %>から
+        テニスコートの予約は<%= link_to "こちら", court_path(Court.first) %>から
       </p>
     <% end %>
   </div>

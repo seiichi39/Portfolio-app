@@ -16,7 +16,7 @@
       <td id="reservation-right"><%= @court.court_name %></td>
       <td>
         <%= form_with model: @courts, url: before_show_admin_court_path, method: :get, local: true do |f| %>
-          <%= f.collection_select :court_id, Court.all, :id, :court_name, { include_blank: '選択してください'}, { id: "court_id", class: "court_class" } %>
+          <%= f.collection_select :court_id, Court.all, :id, :court_name,{ id: "court_id", class: "court_class" } %>
           <%= f.submit "選択" %>
         <% end %>
       </td>

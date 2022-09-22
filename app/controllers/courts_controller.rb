@@ -1,4 +1,6 @@
 class CourtsController < ApplicationController
+  before_action :admin_user, only: [:new, :edit, :show_admin]
+  before_action :non_admin_user, only: :show
   before_action :set_court, only: [:edit, :update, :show, :show_admin, :destroy]
   before_action :set_one_month, only: [:show, :show_admin]
 
@@ -60,10 +62,6 @@ class CourtsController < ApplicationController
 
   def set_court
     @court = Court.find(params[:id])
-  end
-  
-  def set_court2
-    @court = Court.find(1)
   end
 
 end
