@@ -7,7 +7,7 @@ class User < ApplicationRecord
   validates :email, presence: true, length: { maximum: 100 },
             format: { with: VALID_EMAIL_REGEX },
             uniqueness: true
-  # validates :phone_number, presence: true, length: { maximum: 20 }          
+  validates :phone_number, presence: true, length: { maximum: 20 }          
        
   def social_profile(provider)
     social_profiles.select { |sp| sp.provider == provider.to_s }.first
