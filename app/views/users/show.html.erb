@@ -1,0 +1,22 @@
+<div class="box">
+  <div class="box-inner">
+    <%= form_with(model: @user, url: user_path(@user), local: true, method: :patch) do |f| %>
+      <h2>プロフィール内容</h2> 
+      <div class="box-name">
+        <%= f.label :name %><br />
+        <%= f.text_field :name, readonly: true %>
+      </div>
+      <% unless @user.provider == "line" %>
+        <div class="box-email">
+          <%= f.label :email %><br />
+          <%= f.email_field :email, readonly: true %>
+        </div>
+      <% end %>
+      <div class="box-phone_number">
+        <%= f.label :phone_number %><br />
+        <%= f.text_field :phone_number, readonly: true %>
+      </div>
+    <% end %>
+  </div>
+</div>  
+
