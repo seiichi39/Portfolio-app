@@ -12,10 +12,15 @@ class UsersController < ApplicationController
   end
 
   def update
-    if @user.update_attributes(user_params)
-      flash[:success] = "ユーザー情報を更新しました。"
-      redirect_to root_url
+    unless params[:phone_number].nil?
+      if @user.update_attributes(user_params)
+        flash[:success] = "ユーザー情報を更新しました。"
+        redirect_to root_url
+      else
+        render :edit
+      end
     else
+      flash[:danger] = "電話番号を登録してください。"
       render :edit
     end
   end
