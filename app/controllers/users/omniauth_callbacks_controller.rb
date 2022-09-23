@@ -36,7 +36,8 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
       @profile = User.find_or_initialize_by(provider: @omniauth["provider"], uid: @omniauth["uid"])
       if @profile.email.blank?
         email = @omniauth["info"]["email"] ? @omniauth["info"]["email"] : "#{@omniauth["uid"]}-#{@omniauth["provider"]}@example.com"
-        @profile = current_user || User.create!(provider: @omniauth["provider"], uid: @omniauth["uid"], email: email, name: @omniauth["info"]["name"], password: Devise.friendly_token[0, 20])
+        phone_number = "000-0000-0000"
+        @profile = current_user || User.create!(provider: @omniauth["provider"], uid: @omniauth["uid"], phone_number: phone_number, email: email, name: @omniauth["info"]["name"], password: Devise.friendly_token[0, 20])
       end
       @profile.set_values(@omniauth)
       sign_in(:user, @profile)
