@@ -32,6 +32,7 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
   private
   def basic_action
     @omniauth = request.env["omniauth.auth"]
+    debugger
     if @omniauth.present?
       @profile = User.find_or_initialize_by(provider: @omniauth["provider"], uid: @omniauth["uid"])
       if @profile.email.blank?

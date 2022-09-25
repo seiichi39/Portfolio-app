@@ -51,20 +51,6 @@ class ApplicationController < ActionController::Base
       flash[:danger] = "指定のページは表示できません"
     end
   end
-
-  def non_selected_court
-    unless current_user.admin?
-      redirect_to court_path(Court.first)
-      flash[:danger] = "コートを選択してください。"
-    end
-  end
-
-  def non_selected_court2
-    if current_user.admin? && params[:id].nil?
-      redirect_to before_show_admin_court_path(Court.first)
-      flash[:danger] = "コートを選択してください。"
-    end
-  end
   
   protected
   def configure_permitted_parameters
