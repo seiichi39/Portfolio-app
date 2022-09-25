@@ -12,7 +12,7 @@ class UsersController < ApplicationController
   end
 
   def update
-    unless params[:phone_number].nil?
+    unless params[:phone_number] = "00000000000"
       if @user.update_attributes(user_params)
         flash[:success] = "ユーザー情報を更新しました。"
         redirect_to root_url
@@ -20,7 +20,7 @@ class UsersController < ApplicationController
         render :edit
       end
     else
-      flash[:danger] = "電話番号を入力してください。"
+      flash[:danger] = "電話番号を修正してください。"
       render :edit
     end
   end

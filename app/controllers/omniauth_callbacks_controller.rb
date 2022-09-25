@@ -9,13 +9,14 @@ class OmniauthCallbacksController < Devise::OmniauthCallbacksController
       @profile = User.find_or_initialize_by(provider: @omniauth["provider"], uid: @omniauth["uid"])
       if @profile.email.blank?
         email = @omniauth["info"]["email"] ? @omniauth["info"]["email"] : "#{@omniauth["uid"]}-#{@omniauth["provider"]}@example.com"
-        @profile = current_user || User.create!(provider: @omniauth["provider"], uid: @omniauth["uid"], email: email, phone_number: "000-0000-0000", name: @omniauth["info"]["name"], password: Devise.friendly_token[0, 20])
+        phone_number = "00000000000"
+        @profile = current_user || User.create!(provider: @omniauth["provider"], uid: @omniauth["uid"], email: email, phone_number: phone_number, name: @omniauth["info"]["name"], password: Devise.friendly_token[0, 20])
       end
       @profile.set_values(@omniauth)
       sign_in(:user, @profile)
     end
     flash[:notice] = "ログインしました"
-    if current_user.phone_number.nil?
+    if current_user.phone_number = "00000000000"
       redirect_to edit_user_path(current_user)
     else
       redirect_to root_path
