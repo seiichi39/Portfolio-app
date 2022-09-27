@@ -16,7 +16,7 @@ class OmniauthCallbacksController < Devise::OmniauthCallbacksController
       sign_in(:user, @profile)
     end
     flash[:notice] = "ログインしました"
-    if current_user.phone_number = "00000000000"
+    if current_user.phone_number == "00000000000"
       redirect_to edit_user_path(current_user)
     else
       redirect_to root_path
