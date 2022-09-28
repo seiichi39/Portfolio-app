@@ -20,7 +20,6 @@ class UsersController < ApplicationController
         render :edit
       end
     else
-      # flash[:danger] = "電話番号を修正してください。"
       render :edit
     end
   end

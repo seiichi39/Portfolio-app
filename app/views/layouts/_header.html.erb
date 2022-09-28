@@ -3,7 +3,6 @@
     <!-- ロゴ --> 
     <% if logged_in? && (current_user.phone_number == "00000000000") %>
       <%= link_to "セレブエンジニア テニスコート", edit_user_path(current_user), id: "logo" %>
-      <!--<% flash[:danger] = "電話番号を修正してください。" %>-->
     <% else %>
       <%= link_to "セレブエンジニア テニスコート", root_path, id: "logo" %>
     <% end %>
@@ -13,7 +12,6 @@
           <!-- トップへ -->
           <% if current_user.phone_number == "00000000000" %>
             <li><%= link_to "トップへ", edit_user_path(current_user), id: "header-list" %></li>
-            <!--<% flash[:danger] = "電話番号を修正してください。" %>-->
           <% else %>
             <li><%= link_to "トップへ", root_path, id: "header-list" %></li>
           <% end %>
@@ -26,7 +24,6 @@
                   <!-- テニスコート予約 -->
                   <% if current_user.phone_number == "00000000000" %>
                     <li><%= link_to "テニスコート予約", edit_user_path(current_user) %></li>
-                    <!--<% flash[:danger] = "電話番号を修正してください。" %>-->
                   <% else %>
                     <li><%= link_to "テニスコート予約", court_path(Court.first) %></li>
                   <% end %>
