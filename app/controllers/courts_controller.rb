@@ -1,5 +1,5 @@
 class CourtsController < ApplicationController
-  before_action :admin_user, only: [:new, :edit, :show_admin]
+  before_action :admin_user, only: [:new, :edit, :show_admin, :index]
   before_action :non_admin_user, only: :show
   before_action :set_court, only: [:edit, :update, :show, :show_admin, :destroy]
   before_action :set_one_month, only: [:show, :show_admin]

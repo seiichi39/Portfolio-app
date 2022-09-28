@@ -38,6 +38,7 @@ class ApplicationController < ActionController::Base
     redirect_to root_url
   end
   
+  # 管理権限がないユーザーがアクセスするとはじかれる
   def admin_user
     unless current_user.admin?
       redirect_to root_path(current_user)
@@ -45,6 +46,7 @@ class ApplicationController < ActionController::Base
     end
   end
 
+  # 管理権限のユーザーがアクセスするとはじかれる
   def non_admin_user
     if current_user.admin?
       redirect_to root_path

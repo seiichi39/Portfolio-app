@@ -4,13 +4,13 @@
     <tr>
       <td id="reservation-title">
         <% unless @first_day == Date.current.beginning_of_month %>
-          <%= link_to "←", court_path(date: @first_day.prev_month), class: "btn btn-primary" %>
+          <%= link_to "←", show_admin_court_path(date: @first_day.prev_month), class: "btn btn-primary" %>
           &emsp;<%= l(@first_day, format: :middle) %>　予約表&emsp;
-          <%= link_to "→", court_path(date: @first_day.next_month), class: "btn btn-primary" %>
+          <%= link_to "→", show_admin_court_path(date: @first_day.next_month), class: "btn btn-primary" %>
         <% else %>
-          <%= link_to "←", court_path(date: @first_day.prev_month), class: "btn btn-primary", disabled: true %>
+          <%= link_to "←", show_admin_court_path(date: @first_day.prev_month), class: "btn btn-primary" %>
           &emsp;<%= l(@first_day, format: :middle) %>　予約表&emsp;
-          <%= link_to "→", court_path(date: @first_day.next_month), class: "btn btn-primary" %> 
+          <%= link_to "→", show_admin_court_path(date: @first_day.next_month), class: "btn btn-primary" %> 
         <% end %>       
       </td>
       <td id="reservation-right"><%= @court.court_name %></td>
