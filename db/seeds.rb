@@ -13,10 +13,10 @@ User.create!(name: "管理者",
             password_confirmation: "password",
             admin: true)
 
-20.times do |n|
+10.times do |n|
   name = Faker::Name.name
   email = "sample-#{n+1}@email.com"
-  phone_number = "00000000#{n+1}"
+  phone_number = "000000000#{n+1}"
   password = "password"
   User.create!(name: name,
               email: email,
