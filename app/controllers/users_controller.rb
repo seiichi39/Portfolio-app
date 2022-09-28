@@ -17,10 +17,10 @@ class UsersController < ApplicationController
         flash[:success] = "ユーザー情報を更新しました。"
         redirect_to root_url
       else
-        flash[:danger] = "電話番号を修正してください"
         render :edit
       end
     else
+      flash[:danger] = "電話番号を修正してください"
       render :edit
     end
   end
